@@ -1,3 +1,6 @@
+import React from "react";
+import ReactDOM from "react-dom/client";
+
 const left = React.createElement(
   "div",
   {
@@ -32,6 +35,7 @@ const container = React.createElement(
   "div",
   {
     id: "main",
+    sahil:"G.O.A.T"
   },
   [left,right]
 );
