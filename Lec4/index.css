@@ -1,0 +1,43 @@
+*{
+    margin: 0;
+    padding: 0;
+}
+.Head{
+    display: flex;
+    gap: 20rem;
+    align-items: center;
+}
+.left img{
+    width: 8rem;
+}
+
+.right > ol{
+    display: flex;
+    gap: 10rem;
+    align-items: center;
+    padding: 0 1rem;
+}
+.right > ol >li{
+   list-style: none;
+}
+.right > ol >li >a{
+   text-decoration: none;
+}
+.card{
+    border: 2px solid black;
+    width: 10rem;
+    padding: 1rem;
+    margin: 1rem;
+    /* display: flex; */
+    /* flex-direction: row;
+    flex-wrap: wrap; */
+}
+.card > img{
+    width: 10rem;
+}
+.Card-box{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 1rem;
+}
