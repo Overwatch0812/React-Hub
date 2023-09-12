@@ -6,15 +6,12 @@ import Footer from "./components/Footer.js";
 
 
 
-
-
-
 const App = () => {
   return (
     <>
-      <Header />
-      <Body />
-      <Footer />
+      <Header key="head"/>
+      <Body  key="body"/>
+      <Footer key="foot" />
     </>
   );
 };

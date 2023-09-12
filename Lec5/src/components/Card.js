@@ -1,4 +1,4 @@
-const RestaurentCard1 = (props) => {
+const RestaurentCard = (props) => {
     return (
       <div className="card">
         <img alt="name" src={props.restaurent.img} />
@@ -9,4 +9,4 @@ const RestaurentCard1 = (props) => {
     );
   };
 
-export default RestaurentCard1;
+export default RestaurentCard;
