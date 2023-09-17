@@ -1,10 +1,10 @@
 const RestaurentCard = (props) => {
     return (
       <div className="card">
-        <img alt="name" src={props.restaurent.img} />
-        <h1>{props.restaurent.name}</h1>
-        <h2>{props.restaurent.cuisine.join(" ")}</h2>
-        <p>{props.restaurent.Info}</p>
+        {/* <img alt="name" src={props.restaurent.info.img} /> */}
+        <h1>{props.name}</h1>
+        <h2>{props.cuisine}</h2>
+        <p>{props.areaName}</p>
       </div>
     );
   };

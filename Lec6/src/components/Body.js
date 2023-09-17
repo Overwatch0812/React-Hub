@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { RestaurantList } from "../constants.js";
 import RestaurentCard from "./Card.js";
 
@@ -12,14 +12,31 @@ RestaurantList.map((res,i)=>{
 
 const Body = () => {
   const [searchInput, setSearchInput] = useState("");
-  const [restaurantList, setRestaurantList] = useState(RestaurantList);
-  const filter = (searchInput, restaurantList) => {
-    return restaurantList.filter((restaurant) =>
-    restaurant.name.includes(searchInput)
+  const [allRestaurantList, setAllRestaurantList] = useState('');
+  const [filteredRestaurantList, setFilteredRestaurantList] = useState('');
+  const filter = (searchInput, allRestaurantList) => {
+    return allRestaurantList.filter((restaurant) =>
+    restaurant.info.name.toLowerCase().includes(searchInput.toLowerCase())
     );
   };
+  useEffect(()=>{
+    fetchData();
+  },[])
+  async function fetchData(){
+    const data=await fetch('https://www.swiggy.com/dapi/restaurants/list/v5?lat=28.6126255&lng=77.04108959999999&page_type=DESKTOP_WEB_LISTING');
+    const json=await data.json();
+    console.log(json);
+    setAllRestaurantList(json?.data?.cards[5]?.card?.card?.gridElements?.infoWithStyle?.restaurants)
+    setFilteredRestaurantList(json?.data?.cards[5]?.card?.card?.gridElements?.infoWithStyle?.restaurants)
+  }
 
-  return (
+// if(!allRestaurantList) return null;
+if(!filteredRestaurantList) return <h1>Not found</h1>;
+
+
+  return (allRestaurantList.length===0)?(<>
+  <h1>data is fetching</h1>
+  </>):(
     <>
       <input
         type="text"
@@ -29,20 +46,19 @@ const Body = () => {
           setSearchInput(e.target.value);
         }}
       />
-      {console.log(restaurantList)}
       <button onClick={() => {
-        const data1=filter(searchInput, restaurantList);
-        setRestaurantList(data1)
+        const data1=filter(searchInput, allRestaurantList);
+        setFilteredRestaurantList(data1)
       }}>Enter</button>
       <div className="Card-box">
-        {restaurantList.map((res, i) => {
-          return <RestaurentCard restaurent={res} key={i} />;
+        {filteredRestaurantList.map((res, i) => {
+          return <RestaurentCard {...res.info} />;
         })}
+        
       </div>
     </>
   );
 };
-
 // const RestaurentCard=({name,Info,cuisine,img})=>{
 //   return (
 //     <div className="card">
